@@ -1,0 +1,31 @@
+<div *ngIf="userName">
+   <div  *ngFor="let win of userName">
+   {{win}}
+<!-- {{win}} -->
+</div> 
+</div>
+
+<!-- {{weeklyWinnerGroups}} -->
+<div style="margin-top:100px;margin-left:300px;margin-right:300px;">
+
+    <div class="col-md-6">
+        <button class="btn btn-info btn-md" (click)="showLogin(true)"><i class="fa fa-circle-o-notch fa-spin"></i>
+            login</button>
+        <button style="margin:10px" class="btn btn-info btn-md" (click)="showSignUp(true)"><i
+                class="fa fa-circle-o-notch fa-spin"></i> add User</button>
+    </div>
+
+    <div>
+        <p-dialog [(visible)]="displayLogin" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
+            [closable]="true">
+            <div style="background-color:rgb(255, 255, 255)">
+                <app-login (onLogin)="showLogin($event)"></app-login>
+            </div>
+        </p-dialog>
+        <p-dialog [(visible)]="displaySignUp" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
+            [closable]="true">
+            <app-add-user (onSignUp)="showSignUp($event)"></app-add-user>
+        </p-dialog>
+        <router-outlet name="homePageRouter"></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+
+
+<div class="login-div">
+<form [formGroup]="loginForm" class="login-form">
+  <mat-form-field class="login-form-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" >
+  </mat-form-field>
+
+  <mat-form-field class="login-form-full-width" appearance="fill">
+    <mat-label >Password</mat-label>
+    <input type=password matInput formControlName="password" >
+    
+  </mat-form-field>
+
+  <button id="login-btn"   (click)="logIn()" [disabled]="loginForm.invalid">login</button>
+
+  
+  </form>
+</div>
