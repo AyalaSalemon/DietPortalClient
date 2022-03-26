@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: "group-portal", component:GroupPortalComponent},
  
-  { path: "group-list", component:GroupListComponent},
+  { path: "group-list", component:GroupListComponent,outlet:"homePageRouter"}//,outlet:"homePageRouter"},
 ];
 
 @NgModule({
@@ -32,7 +32,7 @@ const routes: Routes = [
    
   ],
   providers:[GroupService,UserService],
-  exports:[]
+  exports:[GroupListComponent]
 })
 
 export class GroupModule { }

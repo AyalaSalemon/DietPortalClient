@@ -11,13 +11,12 @@ const routes: Routes = [
  
   
     {
-      path:"",component:HomePageComponent,outlet:"app-router"  //loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
+      path:"",component:HomePageComponent//,outlet:"app-router"  //loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
       
     },
     {
       
-      path:"group-list",component:GroupListComponent,outlet:'home-page-router'//loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
-      
+      path:"group-list",component:GroupListComponent
     },
     {
       path:"login",component:LoginComponent//loadChildren:()=>import("./modules/user/user.module").then(m=>m.UserModule)

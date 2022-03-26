@@ -1,6 +1,6 @@
 import { GeneratedFile } from '@angular/compiler';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Gender } from 'src/app/models/gender.enum';
 import { Group } from 'src/app/models/group.model';
@@ -16,13 +16,15 @@ import { GroupService } from '../group.service';
   styleUrls: ['./group-list.component.scss']
 })
 export class GroupListComponent implements OnInit {
+
+
   groupId?: number
   public s = Status
   public g = Gender
   groups: Group[] = []
-  insertPassword:boolean=false
- 
-  constructor(private _groupService: GroupService, private _userService: UserService,private router: Router) {
+  insertPassword: boolean = false
+
+  constructor(private _groupService: GroupService, private _userService: UserService, private router: Router) {
   }
 
 
@@ -33,13 +35,13 @@ export class GroupListComponent implements OnInit {
   // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   ngOnInit(): void {
 
-
+    debugger
     this._groupService.getAllGroups().subscribe(g => {
       this.groups = g
       if (this._userService.user) {
         this._groupService.getGroupId(this._userService.user.id).subscribe(
           id => {
-           
+
             this.groupId = id
             console.log(this.groupId)
             this.groups.sort(
@@ -70,23 +72,7 @@ export class GroupListComponent implements OnInit {
 
 
   }
-  // sortGroups(a: Group, b: Group): number {
-  //   debugger
-  //   var ca = 0
-  //   var cb = 0
-  //   console.log(this)
-  //   // if (this) {
-  //   //   if (this.groupId == a.id)
-  //   //     return 1
-  //   //   if (this.groupId == b.id)
-  //   //     return -1
-  //   // }
-  //   // ca += this.degree(a)
-  //   // cb += this.degree(b)
 
-  //   // return ca - cb
-  //   return -1
-  // }
   degree(g: Group): number {
     var count = 0
     if (g.status != 1) {
@@ -116,37 +102,37 @@ export class GroupListComponent implements OnInit {
     this._groupService.getAllGroups().subscribe(g => this.groups = g)
   }
   joinOpenGroup(groupId: number) {
-    if(!this._userService.user)
-    alert("You have to sign up")
+    if (!this._userService.user)
+      alert("You have to sign up")
     debugger
     if (this._userService.user) {
-      var u: userInGroup = new userInGroup(this._userService.user.id,groupId)
+      var u: userInGroup = new userInGroup(this._userService.user.id, groupId)
       this._groupService.addUserInGroup(u);
 
     }
   }
-    joinCloseGroup(groupId: number,top:number,left:number,password?:string ) {
-      if(!this._userService.user){
-        alert("You have to sign up")
-        return;
-      }
-      
-      this.insertPassword=true
-      debugger
-      if (this._userService.user) {
-        var u: userInGroup = new userInGroup(this._userService.user.id,groupId)
-        this._groupService.addUserInGroup(u,password);
-  
-      }
-     
-  
+  joinCloseGroup(groupId: number, top: number, left: number, password?: string) {
+    if (!this._userService.user) {
+      alert("You have to sign up")
+      return;
+    }
+
+    this.insertPassword = true
+    debugger
+    if (this._userService.user) {
+      var u: userInGroup = new userInGroup(this._userService.user.id, groupId)
+      this._groupService.addUserInGroup(u, password);
+
+    }
+
+
 
   }
-  enterGroup(){
-    
-    this.router.navigate(['group-portal'], { skipLocationChange: true }); 
+  enterGroup() {
+
+    this.router.navigate(['group-portal'], { skipLocationChange: true });
   }
-
-
 
 }
+
+

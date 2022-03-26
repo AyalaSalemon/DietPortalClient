@@ -6,6 +6,7 @@ import { GroupService } from '../modules/group/group.service';
 import { UserService } from '../modules/user/user.service';
 
 
+
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -20,11 +21,15 @@ export class HomePageComponent implements OnInit {
   constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
+  refreshGroupList:boolean=false
   userName!: string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
   ngOnInit(): void {
+    console.log("aaaaaaaaaaaaaaa")
     debugger
-    this.router.navigate([{ outlets: { homePageRouter: ['group-list'] } }])
+    
+   // this.router.navigate(['group-list'])
+  //this.router.navigate([{ outlets: {homePageRouter: ['group-list'] } }])
     this._groupService.GetWeeklyWinnerGroup().subscribe(data => {
       this.weeklyWinnerGroups = data
       this.weeklyWinnerGroups.key.forEach(userId => {
@@ -40,6 +45,8 @@ export class HomePageComponent implements OnInit {
   showLogin(b: boolean) {
 
     this.displayLogin = b;
+    if(b==false)
+    this.refreshGroupList=true;
   }
 
   showSignUp(b: boolean) {
