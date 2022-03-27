@@ -1,1 +1,98 @@
-<p>add-group works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+</head>
+
+<body>
+
+    <form [formGroup]="addGroupForm">
+        <div class="card ">
+            <article class="card-body mx-auto" style="max-width:400px;">
+
+                <h2 class="card-title mt-3 text-center">add group</h2>
+                <br>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i>
+
+                        </span>
+                    </div>
+                    <input name="" class="form-control" formControlName="groupName" placeholder="Group Name"
+                        type="text">
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" formControlName="numOfWeeks"
+                        placeholder="Duration of the competition" type="text">
+                </div>
+
+
+
+                <div *ngIf="!this.addGroupForm?.value.isClosed">
+
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="" class="form-control" formControlName="minAge" placeholder="Minimum Age"
+                            type="text">
+
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="" class="form-control" formControlName="maxAge" placeholder="Maximum Age"
+                            type="text">
+                    </div>
+                    <div>
+                        <input type="radio" name="gender" [value]="gender.Male" formControlName="gender"> Male
+                        <br>
+                        <input type="radio" name="gender" [value]="gender.Famale" formControlName="gender"> Female
+
+                    </div>
+
+                </div>
+
+
+                <div *ngIf="this.addGroupForm?.value.isClosed">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
+                        </div>
+                        <input name="" class="form-control" formControlName="password" placeholder="Password"
+                            type="text" required>
+                    </div>
+                </div>
+
+                <div class="isClosedDiv">
+                    <mat-checkbox class="example-margin" name="isClosed" formControlName="isClosed" [checked]=true>A
+                        closed group</mat-checkbox>
+                </div>
+
+                <button (click)="addGroup()" [disabled]="addGroupForm.invalid">add group </button>
+
+            </article>
+
+
+        </div>
+
+    </form>
+
+</body>
+
+</html>

@@ -11,7 +11,7 @@ const routes: Routes = [
  
   
     {
-      path:"",component:HomePageComponent//,outlet:"app-router"  //loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
+      path:"",component:HomePageComponent //loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
       
     },
     {

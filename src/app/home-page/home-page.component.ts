@@ -13,23 +13,14 @@ import { UserService } from '../modules/user/user.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  navigateToLogin() {
-
-  }
-
-
   constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
-  refreshGroupList:boolean=false
+  displayAddGroup: boolean = false
   userName!: string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
   ngOnInit(): void {
-    console.log("aaaaaaaaaaaaaaa")
-    debugger
-    
-   // this.router.navigate(['group-list'])
-  //this.router.navigate([{ outlets: {homePageRouter: ['group-list'] } }])
+   
     this._groupService.GetWeeklyWinnerGroup().subscribe(data => {
       this.weeklyWinnerGroups = data
       this.weeklyWinnerGroups.key.forEach(userId => {
@@ -45,13 +36,16 @@ export class HomePageComponent implements OnInit {
   showLogin(b: boolean) {
 
     this.displayLogin = b;
-    if(b==false)
-    this.refreshGroupList=true;
+    
   }
 
   showSignUp(b: boolean) {
 
     this.displaySignUp = b;
+  }
+  showAddGroup(b: boolean) {
+
+    this.displayAddGroup = b;
   }
 
 }

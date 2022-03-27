@@ -9,6 +9,10 @@ import {SplitterModule} from 'primeng/splitter';
 import { UserService } from '../user/user.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 
 
 const routes: Routes = [
@@ -28,11 +32,13 @@ const routes: Routes = [
     MatCardModule,
     CommonModule,
     SplitterModule,
-    DialogModule
+    DialogModule,
+    ReactiveFormsModule,
+    MatCheckboxModule
    
   ],
   providers:[GroupService,UserService],
-  exports:[GroupListComponent]
+  exports:[GroupListComponent,AddGroupComponent]
 })
 
 export class GroupModule { }
