@@ -11,7 +11,7 @@ import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import{MatIconModule} from '@angular/material/icon';
 
 
 
@@ -34,7 +34,8 @@ const routes: Routes = [
     SplitterModule,
     DialogModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule
    
   ],
   providers:[GroupService,UserService],

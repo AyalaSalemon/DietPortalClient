@@ -15,6 +15,7 @@ import { userInGroup } from 'src/app/models/userInGroup.model';
 })
 export class AddGroupComponent implements OnInit {
   addGroupForm!: FormGroup;
+ 
   gender = Gender;
   g!: Group;
   numOfWeeks:number=4;
@@ -26,7 +27,7 @@ export class AddGroupComponent implements OnInit {
     this.addGroupForm = new FormGroup({
       "groupName": new FormControl("", Validators.required),
       "numOfWeeks": new FormControl(""),
-      "isClosed": new FormControl(),
+      "isClosed": new FormControl(true),
       "gender": new FormControl(),
       "minAge": new FormControl(""),
       "maxAge": new FormControl(""),
@@ -37,17 +38,27 @@ export class AddGroupComponent implements OnInit {
   addGroup() {
     debugger
     var uig;
-    if(this.addGroupForm?.value.isClosed){
-      if(!this.addGroupForm?.value.password)
-      alert("A closed group need a password!")
-      return;
-    }
-    if(this.addGroupForm?.value.numOfWeeks){
+     if(this.addGroupForm?.value.numOfWeeks){
      this.numOfWeeks=this.addGroupForm?.value.numOfWeeks
     }
-    this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
-      new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this._userService.user?.id);
+    if(this.addGroupForm?.value.isClosed){
+      if(!this.addGroupForm?.value.password){
+         alert("A closed group need a password!")
+      return;
+      }
+      else{
+        this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
+          new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this._userService.user?.id);
+      }
+     
+    }
+   else{
+     this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
+      new Date(),this.numOfWeeks, 1,undefined, this._userService.user?.id,
+      this.addGroupForm?.value.gender,this.addGroupForm?.value.minAge,this.addGroupForm?.value.maxAge);
 
+   }
+    
     this._groupService.addGroup(this.g).subscribe(groupId => {
 
       uig = new userInGroup(groupId, this._userService.user?.id)

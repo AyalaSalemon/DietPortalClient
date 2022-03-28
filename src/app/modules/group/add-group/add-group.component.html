@@ -22,8 +22,8 @@
                 <br>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-id-card" aria-hidden="true"></i>
-
+                        <span class="input-group-text">
+                            <mat-icon>group</mat-icon>
                         </span>
                     </div>
                     <input name="" class="form-control" formControlName="groupName" placeholder="Group Name"
@@ -31,10 +31,10 @@
                 </div>
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        <span class="input-group-text"> <mat-icon>query_builder</mat-icon> </span>
                     </div>
                     <input name="" class="form-control" formControlName="numOfWeeks"
-                        placeholder="Duration of the competition" type="text">
+                        placeholder="Duration of the competition" type="number" min="0">
                 </div>
 
 
@@ -47,16 +47,16 @@
                             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                         </div>
                         <input name="" class="form-control" formControlName="minAge" placeholder="Minimum Age"
-                            type="text">
+                        type="number"  min="0" max="120">
 
                     </div>
 
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                         </div>
                         <input name="" class="form-control" formControlName="maxAge" placeholder="Maximum Age"
-                            type="text">
+                        type="number"  min="0" max="120">
                     </div>
                     <div>
                         <input type="radio" name="gender" [value]="gender.Male" formControlName="gender"> Male
@@ -80,11 +80,11 @@
                 </div>
 
                 <div class="isClosedDiv">
-                    <mat-checkbox class="example-margin" name="isClosed" formControlName="isClosed" [checked]=true>A
+                    <mat-checkbox class="example-margin" name="isClosed" formControlName="isClosed">A
                         closed group</mat-checkbox>
                 </div>
 
-                <button (click)="addGroup()" [disabled]="addGroupForm.invalid">add group </button>
+                <button (click)="addGroup()" [disabled]="addGroupForm.invalid">add group  <span style="padding:10px"> <mat-icon>group_add</mat-icon></span>      </button>
 
             </article>
 
