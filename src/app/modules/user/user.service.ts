@@ -24,10 +24,8 @@ export class UserService {
       alert("Hi to " + this.user?.firstName + "!!!!")
       this.b = false
 
-     // this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
-      // this.router.navigateByUrl('/group-list', { skipLocationChange: true }).then(() => {
-       // this.router.navigate(['group-list'], { skipLocationChange: true });
-      // });
+     
+      
     }
       ,
       rej => { this.b = true }

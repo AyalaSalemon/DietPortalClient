@@ -40,6 +40,9 @@ if(password)
 }
 
 
-
+  addGroup(g:Group):Observable<number> {
+   return this._http.post<number>("/api/Group",g);
+  }
 
 }
+

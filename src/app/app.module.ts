@@ -16,18 +16,6 @@ import { LoginComponent } from './modules/user/login/login.component';
 import { AddUserComponent } from './modules/user/add-user/add-user.component';
 import { GroupListComponent } from './modules/group/group-list/group-list.component';
 
-// const routes: Routes = [
-//   {
-//     path: "", component: GroupListComponent
-
-//   },
-//   { path: "login", component: LoginComponent },
-//   { path: "addUser", component: AddUserComponent, outlet: "homepage" },
-//   {
-//     path: "group-list", component: GroupListComponent
-
-//   },
-// ]
 @NgModule({
   declarations: [
     AppComponent,

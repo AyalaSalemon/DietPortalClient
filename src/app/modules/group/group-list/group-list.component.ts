@@ -28,11 +28,7 @@ export class GroupListComponent implements OnInit {
   }
 
 
-  //   openText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  //   from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  //   originally bred for hunting.`;
-  //   closeText = `aaaaaaaaaaaaaaaaaaa
-  // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
+
   ngOnInit(): void {
 
     debugger
@@ -106,7 +102,7 @@ export class GroupListComponent implements OnInit {
       alert("You have to sign up")
     debugger
     if (this._userService.user) {
-      var u: userInGroup = new userInGroup(this._userService.user.id, groupId)
+      var u: userInGroup = new userInGroup(groupId,this._userService.user.id )
       this._groupService.addUserInGroup(u);
 
     }
@@ -120,7 +116,7 @@ export class GroupListComponent implements OnInit {
     this.insertPassword = true
     debugger
     if (this._userService.user) {
-      var u: userInGroup = new userInGroup(this._userService.user.id, groupId)
+      var u: userInGroup = new userInGroup(groupId,this._userService.user.id )
       this._groupService.addUserInGroup(u, password);
 
     }

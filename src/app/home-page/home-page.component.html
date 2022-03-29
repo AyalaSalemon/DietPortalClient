@@ -1,10 +1,8 @@
 <div *ngIf="userName">
-   <div  *ngFor="let win of userName">
-   {{win}}
-<!-- {{win}} -->
-</div> 
+    <div *ngFor="let win of userName">
+        {{win}}
+    </div>
 </div>
-<!-- {{weeklyWinnerGroups}} -->
 <div style="margin-top:100px;margin-left:300px;margin-right:300px;">
 
     <div class="col-md-6">
@@ -12,9 +10,18 @@
             login</button>
         <button style="margin:10px" class="btn btn-info btn-md" (click)="showSignUp(true)"><i
                 class="fa fa-circle-o-notch fa-spin"></i> add User</button>
+       
+        <button style="margin:10px" class="btn btn-info btn-md" (click)="showAddGroup(true)" disabled="addGroupAble"><i
+                class="fa fa-circle-o-notch fa-spin"></i> add Group</button>
     </div>
     <app-group-list #groupList></app-group-list>
     <div>
+        <p-dialog [(visible)]="displayAddGroup" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
+            [closable]="true">
+            <div style="background-color:rgb(255, 255, 255)">
+                <app-add-group (onAddGroup)="showAddGroup($event)"></app-add-group>
+            </div>
+        </p-dialog>
         <p-dialog [(visible)]="displayLogin" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
             [closable]="true">
             <div style="background-color:rgb(255, 255, 255)">
@@ -25,10 +32,9 @@
             [closable]="true">
             <app-add-user (onSignUp)="showSignUp($event)"></app-add-user>
         </p-dialog>
-        <!-- <router-outlet name="homePageRouter">gggggggggggg</router-outlet> -->
-      
-      
+
+
     </div>
-   
-  
-</div >
+
+
+</div>
