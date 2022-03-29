@@ -9,6 +9,9 @@ import {SplitterModule} from 'primeng/splitter';
 import { UserService } from '../user/user.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+
 
 
 const routes: Routes = [
@@ -28,11 +31,13 @@ const routes: Routes = [
     MatCardModule,
     CommonModule,
     SplitterModule,
-    DialogModule
+    DialogModule,
+    MatDividerModule,
+    MatListModule
    
   ],
   providers:[GroupService,UserService],
-  exports:[GroupListComponent]
+  exports:[GroupListComponent,GroupPortalComponent]
 })
 
 export class GroupModule { }

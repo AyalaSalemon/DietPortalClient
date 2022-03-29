@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
 
   }
   async logIn() {
-    this.onLogin.emit(false)
-    return
+    // this.onLogin.emit(false)
+    // return
     this.onLogin.emit(await this._userService.getUser(this.loginForm?.value.name, this.loginForm?.value.password))
   }
 
