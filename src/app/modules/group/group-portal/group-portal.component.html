@@ -3,23 +3,25 @@
     <p-splitter [style]="{'height': '300px'}">
         <ng-template pTemplate>
             Panel 1 
-    
-        </ng-template>
-        <ng-template pTemplate >
-            Panel 2
             <div>
                 <mat-list>
                     <h1 mat-subheader>Folders</h1>
                     <mat-list-item *ngFor="let user of users; last as last">
-                       <mat-icon mat-list-icon><i class="fa fa-user"></i></mat-icon>
-                     <div><i class="fa fa-user"></i></div>
-                       <h2 mat-line>{{user.name}}  </h2>
+                       
+                     <div> </div>
+                       <h2 mat-line><mat-icon style="border-radius: 200px;">account_circle</mat-icon> {{user.name}}  </h2> 
                        <h2 style="margin-left: 300px;">{{user.kg}} </h2>
+                     
                        <mat-divider style="background-color:aqua ;border-width: 3px;" [inset]="true" *ngIf="!last"></mat-divider>
                     </mat-list-item>
                    
                  </mat-list> 
                 </div>
+    
+        </ng-template>
+        <ng-template pTemplate >
+            Panel 2
+           
         </ng-template>
     </p-splitter>
     

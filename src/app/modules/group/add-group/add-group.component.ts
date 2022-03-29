@@ -48,7 +48,7 @@ export class AddGroupComponent implements OnInit {
       }
       else{
         this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
-          new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this._userService.user?.id);
+          new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this._userService.user?.id,undefined,undefined,undefined);
       }
      
     }

@@ -1,3 +1,5 @@
+<div style="background-image: url(../../assets/back-ground.jpg);size:100%;opacity:80%;">
+
 <div *ngIf="userName">
     <div *ngFor="let win of userName">
         {{win}}
@@ -11,7 +13,7 @@
         <button style="margin:10px" class="btn btn-info btn-md" (click)="showSignUp(true)"><i
                 class="fa fa-circle-o-notch fa-spin"></i> add User</button>
        
-        <button style="margin:10px" class="btn btn-info btn-md" (click)="showAddGroup(true)" disabled="addGroupAble"><i
+        <button style="margin:10px" class="btn btn-info btn-md" (click)="showAddGroup(true)" [disabled]="addGroupAble"><i
                 class="fa fa-circle-o-notch fa-spin"></i> add Group</button>
     </div>
     <app-group-list #groupList></app-group-list>
@@ -37,4 +39,5 @@
     </div>
 
 
+</div>
 </div>

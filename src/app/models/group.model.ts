@@ -6,9 +6,9 @@ export class Group {
 
 
     constructor(id: number, groupName: string, isOpen: boolean,
-        startDate: Date, numOfWeeks: number, status: Status, password?: string, managerId?: number, genderId=0,
+        startDate: Date, numOfWeeks: number, status: Status, password?: string, managerId?: number, genderId?:number,
         minAge=0,
-        maxAge=99
+        maxAge=120
     ) {
         this.id = id;
         this.groupName = groupName;
@@ -35,9 +35,9 @@ export class Group {
     startDate: Date;
     numOfWeeks: number;
     status: Status;
-    genderId=0
+    genderId?:number
     minAge=0
-    maxAge=99
+    maxAge=120
 
 
 }
