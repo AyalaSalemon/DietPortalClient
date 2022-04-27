@@ -19,7 +19,7 @@ import { GroupListComponent } from './modules/group/group-list/group-list.compon
 @NgModule({
   declarations: [
     AppComponent,
-   // ErrorPageComponent,
+    // ErrorPageComponent,
     HomePageComponent,
 
   ],
@@ -29,14 +29,13 @@ import { GroupListComponent } from './modules/group/group-list/group-list.compon
     BrowserAnimationsModule,
     UserModule,
     DialogModule,
-    // RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-     GroupModule
+    GroupModule
 
   ],
   providers: [],

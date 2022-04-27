@@ -9,6 +9,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { GroupListComponent } from '../group/group-list/group-list.component';
+import{MatIconModule} from '@angular/material/icon';
+
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -27,6 +29,8 @@ const routes: Routes = [
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatIconModule,
+  
     RouterModule.forChild(routes)
 
   ],
