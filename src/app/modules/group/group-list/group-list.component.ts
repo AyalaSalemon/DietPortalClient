@@ -30,8 +30,6 @@ export class GroupListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    debugger
     this._groupService.getAllGroups().subscribe(g => {
       this.groups = g
       if (this._userService.user) {

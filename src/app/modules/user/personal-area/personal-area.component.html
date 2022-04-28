@@ -1,0 +1,31 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- WeekNumber Column -->
+    <ng-container matColumnDef="WeekNumber">
+      <th mat-header-cell *matHeaderCellDef style="text-align:center"> Week </th>
+      <td mat-cell *matCellDef="let element"style="text-align:center"> {{element.WeekNumber}} </td>
+    </ng-container>
+  
+    <!-- Date Column -->
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef style="text-align:center"> Date </th>
+      <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.Date|date:'EEEE  , d,MMMM, y'}}  </td>
+    </ng-container>
+ 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element" > {{element.weight}} </td>
+    </ng-container>
+
+     <!-- kg Column -->
+    <ng-container matColumnDef="kg">
+        <th mat-header-cell *matHeaderCellDef style="text-align:center"> weight loss </th>
+        <td mat-cell *matCellDef="let element" style="text-align:center"> {{element.kg}} </td>
+      </ng-container>
+  
+ 
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { GroupListComponent } from '../group/group-list/group-list.component';
 import{MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     MatIconModule,
-  
+    MatTableModule,
     RouterModule.forChild(routes)
 
   ],
