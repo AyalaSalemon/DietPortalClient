@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { Weight } from 'src/app/models/weight.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,7 @@ debugger
 
     return this._http.post<any>("/api/User", u);
   }
-
+  getUserProgress(userId: number):Observable<Weight []> {
+    return this._http.get<Weight []>("/api/Weight/User/"+userId)
+  }
 }

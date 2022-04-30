@@ -11,6 +11,7 @@ import { UserWithKg } from 'src/app/models/userWithKg.model';
   providedIn: 'root'
 })
 export class GroupService {
+  
 
   constructor(private _http: HttpClient) { } 
 
@@ -42,6 +43,9 @@ if(password)
 
   addGroup(g:Group):Observable<number> {
    return this._http.post<number>("/api/Group",g);
+  }
+  setStatus(g:Group){
+    return this._http.put<number>("/api/Group",g);
   }
 
 }

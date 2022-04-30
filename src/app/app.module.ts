@@ -15,6 +15,7 @@ import { DialogModule } from 'primeng/dialog';
 import { LoginComponent } from './modules/user/login/login.component';
 import { AddUserComponent } from './modules/user/add-user/add-user.component';
 import { GroupListComponent } from './modules/group/group-list/group-list.component';
+import { Chart } from 'chart.js';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { GroupListComponent } from './modules/group/group-list/group-list.compon
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-     GroupModule
+    GroupModule,
+   //Chart
 
   ],
   providers: [],

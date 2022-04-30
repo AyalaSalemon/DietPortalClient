@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { GroupListComponent } from '../group/group-list/group-list.component';
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -27,7 +28,10 @@ const routes: Routes = [
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ChartsModule,
+    WavesModule
+
 
   ],
   providers: [UserService],

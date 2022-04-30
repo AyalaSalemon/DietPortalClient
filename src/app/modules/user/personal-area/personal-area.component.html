@@ -1,5 +1,5 @@
 <!-- <p>personal-area works!</p> -->
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html>
 <head>
 <script>
@@ -55,4 +55,18 @@ function updateData() {
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
-</html>
+</html> -->
+ 
+personal-area
+	 <div style="display: block;background-color: aqua;">
+	<canvas mdbChart
+	  [chartType]="chartType"
+	  [datasets]="chartDatasets"
+	  [labels]="chartLabels"
+	  [colors]="chartColors"
+	  [options]="chartOptions"
+	  [legend]="true"
+	  (chartHover)="chartHovered($event)"
+	  (chartClick)="chartClicked($event)">
+	</canvas>
+  </div> 

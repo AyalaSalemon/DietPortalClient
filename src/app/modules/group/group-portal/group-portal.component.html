@@ -1,15 +1,17 @@
 <p>group-portal works!</p>
-<div>
+<h2> your group!!</h2>
+<div class= "div-backGround" size="700px">
+    
     <p-splitter [style]="{'height': '300px'}">
-        <ng-template pTemplate>
+        <ng-template pTemplate >
             Panel 1 
             <div>
                 <mat-list>
-                    <h1 mat-subheader>Folders</h1>
+                    
                     <mat-list-item *ngFor="let user of users; last as last">
                        
                      <div> </div>
-                       <h2 mat-line><mat-icon style="border-radius: 200px;">account_circle</mat-icon> {{user.name}}  </h2> 
+                       <h2 mat-line> {{user.name}}  </h2> 
                        <h2 style="margin-left: 300px;">{{user.kg}} </h2>
                      
                        <mat-divider style="background-color:aqua ;border-width: 3px;" [inset]="true" *ngIf="!last"></mat-divider>
@@ -17,7 +19,7 @@
                    
                  </mat-list> 
                 </div>
-    
+    <!-- <mat-icon style="border-radius: 200px;">account_circle</mat-icon> -->
         </ng-template>
         <ng-template pTemplate >
             Panel 2

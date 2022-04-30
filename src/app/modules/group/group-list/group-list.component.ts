@@ -126,7 +126,7 @@ export class GroupListComponent implements OnInit {
   }
   enterGroup() {
 
-    this.router.navigate(['group-portal'], { skipLocationChange: true });
+    this.router.navigate(['group-portal',this.groupId], { skipLocationChange: true });
   }
 
 }
