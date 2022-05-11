@@ -26,6 +26,7 @@ export class GroupPortalComponent implements OnInit {
  groupId!:number
  subscription?:Subscription
   ngOnInit(): void {
+    this.enterPersonalArea()
     this.actRouter.paramMap.subscribe(p=>this.groupId=Number(p.get('groupId')))          
     debugger
      this.getGroupDetails(this.groupId)
