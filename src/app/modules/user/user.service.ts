@@ -36,7 +36,6 @@ export class UserService {
 
   addUser(u: User) {
 debugger 
-
     return this._http.post<any>("/api/User", u);
   }
   getUserProgress(userId: number):Observable<Weight []> {

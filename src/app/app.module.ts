@@ -20,7 +20,7 @@ import { Chart } from 'chart.js';
 @NgModule({
   declarations: [
     AppComponent,
-   // ErrorPageComponent,
+    // ErrorPageComponent,
     HomePageComponent,
 
   ],
@@ -30,15 +30,13 @@ import { Chart } from 'chart.js';
     BrowserAnimationsModule,
     UserModule,
     DialogModule,
-    // RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    GroupModule,
-   //Chart
+    GroupModule
 
   ],
   providers: [],
