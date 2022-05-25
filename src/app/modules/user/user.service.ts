@@ -20,14 +20,10 @@ export class UserService {
   }
   async getUser(name: string, password: string): Promise<boolean> {
     await this._http.get<User>("/api/User/" + name + "/" + password).subscribe(res => {
-
+      sessionStorage.setItem('user',JSON.stringify(res))
       this.user = res
       alert("Hi to " + this.user?.firstName + "!!!!")
-      this.b = false
-
-     
-      
-    }
+      this.b = false   }
       ,
       rej => { this.b = true }
     );
@@ -35,10 +31,16 @@ export class UserService {
   }
 
   addUser(u: User) {
-debugger 
-    return this._http.post<any>("/api/User", u);
+   this._http.post<any>("/api/User", u);
   }
   getUserProgress(userId: number):Observable<Weight []> {
     return this._http.get<Weight []>("/api/Weight/User/"+userId)
   }
-}
+
+
+
+   addWeight(w:Weight):Observable<number> {
+    return this._http.post<number>("/api/Weight",w);
+   }
+  }
+ 

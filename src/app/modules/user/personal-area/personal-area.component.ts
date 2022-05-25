@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { Weight } from 'src/app/models/weight.model';
 import { UserService } from '../user.service';
 import { Group } from 'src/app/models/group.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user.model';
 
 
 export interface ShowProgress {
@@ -17,6 +19,7 @@ export interface ShowProgress {
   styleUrls: ['./personal-area.component.scss']
 })
 export class PersonalAreaComponent implements OnInit {
+  newWeightForm!:FormGroup;
   group?:Group;
   displayedColumns: string[] = ['WeekNumber', 'Date', 'weight','kg'];
   progress:Weight[]=[
@@ -33,6 +36,8 @@ export class PersonalAreaComponent implements OnInit {
    }
   
   async ngOnInit(): Promise<void> {
+    this.newWeightForm=new FormGroup({ 
+      "weight":new FormControl("",Validators.required)})
     var stringGroup=sessionStorage.getItem("group")
     this.group=JSON.parse(stringGroup?stringGroup:JSON.stringify(new Group(0,"g",true,new Date(22,4,22),3,1))) as Group
     var firstWeek=new Date(this.group.startDate).getTime()
@@ -50,5 +55,17 @@ export class PersonalAreaComponent implements OnInit {
   async getUserProgress(userId:number){
     this._userService.getUserProgress(userId).subscribe(p=>this.progress=p)
  
+   }
+   addWeight(){
+     const userString=sessionStorage.getItem('user')
+     const user=JSON.parse(userString?userString:JSON.stringify(new User(1,"9","l","v",new Date(),1,76,"0000")))
+     
+     if(this.group&&this.newWeightForm){
+       debugger
+        const weight:Weight=new Weight(user.id,this.group?.id,new Date(),this.newWeightForm?.value['weight'],5)
+        this._userService.addWeight(weight)
+     }
+    
+     
    }
 }

@@ -1,50 +1,53 @@
 grouplist works
-<div *ngIf="this.groupId">
-  
+<div *ngIf="this.group">
+
   <div style="display:inline-flex;flex-wrap: wrap">
-    <p-splitter [style]="{'height': '200px'}" *ngFor="let group of groups" >
-    
+    <p-splitter [style]="{'height': '200px'}" *ngFor="let grp of groups">
+
       <ng-template pTemplate>
-        <mat-card class="group-card" >
+        <mat-card class="group-card">
           <mat-card-title-group>
-            <mat-card-title>{{group.groupName}}</mat-card-title>
-            <mat-card-subtitle>{{s[group.status]}}</mat-card-subtitle>
-  
+            <mat-card-title>{{grp.groupName}}</mat-card-title>
+            <mat-card-subtitle>{{s[grp.status]}}</mat-card-subtitle>
+
           </mat-card-title-group>
           <mat-card-content>
-  
-            <div *ngIf="group.id==this.groupId" #splitter>
+
+            <div *ngIf="grp.id==this.group.id" #splitter>
+    
+    
               <button (click)="enterGroup()" style="position: absolute;bottom: 10px; right:100px; width:100px;"
-              class="btn btn-info btn-md"><i class="fa fa-circle-o-notch fa-spin"></i> enter</button>
+                class="btn btn-info btn-md"><i class="fa fa-circle-o-notch fa-spin"></i> enter</button>
             </div>
-  
-            <div *ngIf="group.isOpen">
-              <div *ngIf="group.genderId||group.minAge||group.maxAge">
+
+            <div *ngIf="grp.isOpen">
+              <div *ngIf="grp.genderId||grp.minAge||grp.maxAge">
                 properties:
-                <div *ngIf="group.genderId">gender: {{g[group.genderId]}}</div>
-                <div *ngIf="group.minAge">minimum age: {{group.minAge}}</div>
-                <div *ngIf="group.maxAge">maximum age: {{group.maxAge}}</div>
+                <div *ngIf="grp.genderId">gender: {{g[grp.genderId]}}</div>
+                <div *ngIf="grp.minAge">minimum age: {{grp.minAge}}</div>
+                <div *ngIf="grp.maxAge">maximum age: {{grp.maxAge}}</div>
               </div>
-              <button *ngIf="group.id!=this.groupId"  [disabled]="true"
+              <button *ngIf="grp.id!=this.group.id" [disabled]="true"
                 style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
                   class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-            <div *ngIf="!group.isOpen&&group.id!=this.groupId" #splitter>
+            <div *ngIf="!grp.isOpen&&grp.id!=this.group.id" #splitter>
               It is a close group,for joining, you have to press a password
-              <button *ngIf="group.id!=this.groupId" [disabled]="true" style="position: absolute;bottom: 10px; right:100px; width:100px;"
-              class="btn btn-info btn-md"><i class="fa fa-circle-o-notch fa-spin"></i> join</button>
+              <button *ngIf="grp.id!=this.group.id" [disabled]="true"
+                style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
+                  class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-            
-          
-  
-           
-  
+
+
+
+
+
           </mat-card-content>
-  
+
         </mat-card>
-  
+
       </ng-template>
-   
+
     </p-splitter>
   </div>
 </div>
@@ -53,65 +56,65 @@ grouplist works
 
 
 
-<div *ngIf="!this.groupId">
+<div *ngIf="!this.group">
   <p-dialog [(visible)]="insertPassword" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
-  [closable]="true">
-  <div  style=" height: 300px;width: 400px;">
-    <div class="card " style=" height: 300px;width: 400px;align-items: center;">
-      <article class="card-body mx-auto" style="max-width:400px;">
-    <div class="form-group input-group">
-      <div class="input-group-prepend">
-          <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
+    [closable]="true">
+    <div style=" height: 300px;width: 400px;">
+      <div class="card " style=" height: 300px;width: 400px;align-items: center;">
+        <article class="card-body mx-auto" style="max-width:400px;">
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-lock" aria-hidden="true"></i> </span>
+            </div>
+            <input name="" class="form-control" formControlName="password" placeholder="Password" type="text" required>
+          </div>
+          <button class="insert">insert <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px"></i></button>
+        </article>
+
       </div>
-      <input name="" class="form-control" formControlName="password" placeholder="Password" type="text" required>
-  </div>
-  <button class="insert" >insert  <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px"></i></button>
-      </article>
-  
-    </div>  
-  </div>
+    </div>
   </p-dialog>
   <div style="display:inline-flex;flex-wrap: wrap">
-    <p-splitter [style]="{'height': '200px'}" *ngFor="let group of groups" >
-    
+    <p-splitter [style]="{'height': '200px'}" *ngFor="let grp of groups">
+
       <ng-template pTemplate>
-        <mat-card class="group-card" >
+        <mat-card class="group-card">
           <mat-card-title-group>
-            <mat-card-title>{{group.groupName}}</mat-card-title>
-            <mat-card-subtitle>{{s[group.status]}}</mat-card-subtitle>
-  
+            <mat-card-title>{{grp.groupName}}</mat-card-title>
+            <mat-card-subtitle>{{s[grp.status]}}</mat-card-subtitle>
+
           </mat-card-title-group>
           <mat-card-content>
-  
-            <div *ngIf="group.isOpen">
-              <div *ngIf="group.genderId||group.minAge||group.maxAge">
+
+            <div *ngIf="grp.isOpen">
+              <div *ngIf="grp.genderId||grp.minAge||grp.maxAge">
                 properties:
-                <div *ngIf="group.genderId">gender: {{g[group.genderId]}}</div>
-                <div *ngIf="group.minAge">minimum age: {{group.minAge}}</div>
-                <div *ngIf="group.maxAge">maximum age: {{group.maxAge}}</div>
+                <div *ngIf="grp.genderId">gender: {{g[grp.genderId]}}</div>
+                <div *ngIf="grp.minAge">minimum age: {{grp.minAge}}</div>
+                <div *ngIf="grp.maxAge">maximum age: {{grp.maxAge}}</div>
               </div>
-              <button  (click)="joinOpenGroup(group.id)"  [disabled]="group.status!=1"
+              <button (click)="joinOpenGroup(grp.id)" [disabled]="grp.status!=1"
                 style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
                   class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-            <div *ngIf="!group.isOpen&&group.id" #splitter>
+            <div *ngIf="!grp.isOpen&&grp.id" #splitter>
               It is a close group,for joining, you have to press a password
-              <button [disabled]="group.status!=1"
-              (click)="joinCloseGroup(group.id,splitter.offsetTop,splitter.offsetLeft,group.password)" 
-              style="position: absolute;bottom: 10px; right:100px; width:100px;"
-              class="btn btn-info btn-md"><i class="fa fa-circle-o-notch fa-spin"></i> join</button>
+              <button [disabled]="grp.status!=1"
+                (click)="joinCloseGroup(grp.id,splitter.offsetTop,splitter.offsetLeft,grp.password)"
+                style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
+                  class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-            
-          
-  
-           
-  
+
+
+
+
+
           </mat-card-content>
-  
+
         </mat-card>
-  
+
       </ng-template>
-   
+
     </p-splitter>
   </div>
 </div>

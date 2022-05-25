@@ -18,7 +18,7 @@ import { GroupService } from '../group.service';
 export class GroupListComponent implements OnInit {
 
 
-  groupId?: number
+  group?:Group
   public s = Status
   public g = Gender
   groups: Group[] = []
@@ -33,20 +33,20 @@ export class GroupListComponent implements OnInit {
     this._groupService.getAllGroups().subscribe(g => {
       this.groups = g
       if (this._userService.user) {
-        this._groupService.getGroupId(this._userService.user.id).subscribe(
-          id => {
-
-            this.groupId = id
-            console.log(this.groupId)
+        this._groupService.getGroupByUserId(this._userService.user.id).subscribe(
+          group => {
+            sessionStorage.setItem('group',JSON.stringify(group));
+            this.group= group
+            console.log(this.group.id)
             this.groups.sort(
               (a: Group, b: Group): number => {
                 var ca = 0
                 var cb = 0
-                if (this.groupId == a.id) {
+                if (this.group?.id == a.id) {
                   console.log("-1 a:", a.id, " b:", b.id)
                   return -1
                 }
-                if (this.groupId == b.id) {
+                if (this.group?.id == b.id) {
                   console.log("1a:", a.id, " b:", b.id)
                   return 1
                 }
@@ -124,7 +124,7 @@ export class GroupListComponent implements OnInit {
   }
   enterGroup() {
 
-    this.router.navigate(['group-portal',this.groupId], { skipLocationChange: true });
+    this.router.navigate(['group-portal',this.group?.id], { skipLocationChange: true });
   }
 
 }

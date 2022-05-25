@@ -14,7 +14,7 @@ import { UserService } from '../modules/user/user.service';
 })
 export class HomePageComponent implements OnInit {
   addGroupAble: boolean =
-    (this._userService.user != null && this._groupService.getGroupId(this._userService.user.id) != null)
+    (this._userService.user != null && this._groupService.getGroupByUserId(this._userService.user.id) != null)
   constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
