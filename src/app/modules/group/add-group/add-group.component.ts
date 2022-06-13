@@ -5,6 +5,7 @@ import { Group } from 'src/app/models/group.model';
 import { UserService } from '../../user/user.service';
 import { GroupService } from '../group.service';
 import { userInGroup } from 'src/app/models/userInGroup.model';
+import { User } from 'src/app/models/user.model';
 
 
 
@@ -15,7 +16,7 @@ import { userInGroup } from 'src/app/models/userInGroup.model';
 })
 export class AddGroupComponent implements OnInit {
   addGroupForm!: FormGroup;
- 
+ currentUser:User|null
   gender = Gender;
   g!: Group;
   numOfWeeks:number=4;
@@ -24,6 +25,12 @@ export class AddGroupComponent implements OnInit {
   constructor(private _userService: UserService, private _groupService: GroupService) { }
 
   ngOnInit(): void {
+    this._userService.geCurrenttUser().subscribe(user => {
+      this.currentUser=user})
+
+  this.buildAddGroupForm()
+  }
+  buildAddGroupForm(){
     this.addGroupForm = new FormGroup({
       "groupName": new FormControl("", Validators.required),
       "numOfWeeks": new FormControl(""),
@@ -48,20 +55,20 @@ export class AddGroupComponent implements OnInit {
       }
       else{
         this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
-          new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this._userService.user?.id);
+          new Date(),this.numOfWeeks, 1, this.addGroupForm?.value.password, this.currentUser?.id,undefined,undefined,undefined);
       }
      
     }
    else{
      this.g = new Group(0, this.addGroupForm?.value.groupName, !this.addGroupForm?.value.isClosed,
-      new Date(),this.numOfWeeks, 1,undefined, this._userService.user?.id,
+      new Date(),this.numOfWeeks, 1,undefined, this.currentUser?.id,
       this.addGroupForm?.value.gender,this.addGroupForm?.value.minAge,this.addGroupForm?.value.maxAge);
 
    }
     
     this._groupService.addGroup(this.g).subscribe(groupId => {
 
-      uig = new userInGroup(groupId, this._userService.user?.id)
+      uig = new userInGroup(groupId, this.currentUser?.id)
       this._groupService.addUserInGroup(uig).subscribe(f=>this.onAddGroup.emit(false));
 
     }

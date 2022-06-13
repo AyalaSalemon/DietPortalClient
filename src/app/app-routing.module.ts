@@ -6,6 +6,7 @@ import { GroupListComponent } from './modules/group/group-list/group-list.compon
 import { GroupPortalComponent } from './modules/group/group-portal/group-portal.component';
 import { AddUserComponent } from './modules/user/add-user/add-user.component';
 import { LoginComponent } from './modules/user/login/login.component';
+import { PersonalAreaComponent } from './modules/user/personal-area/personal-area.component';
 
 const routes: Routes = [
  
@@ -27,8 +28,13 @@ const routes: Routes = [
     } ,
     {
       path:"group-portal",component:GroupPortalComponent//loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
+    } ,
+    {
+      path:"group-portal/:groupId",component:GroupPortalComponent//loadChildren:()=>import("./modules/group/group.module").then(m=>m.GroupModule)
+    } ,
+    {
+      path:"personal-area",component:PersonalAreaComponent
     } 
-   
     // ,{ path: 'error-page', component: ErrorPageComponent }
     
 ];

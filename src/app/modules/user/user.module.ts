@@ -11,6 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { GroupListComponent } from '../group/group-list/group-list.component';
 import{MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 const routes: Routes = [
@@ -26,6 +28,8 @@ const routes: Routes = [
 
   ],
   imports: [
+    MatNativeDateModule,
+    MatDatepickerModule,
     CommonModule,
     MatInputModule,
     HttpClientModule,

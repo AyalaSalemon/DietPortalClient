@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Group } from 'src/app/models/group.model';
 import { GroupDetails } from 'src/app/models/groupDetails.model';
 import { userInGroup } from 'src/app/models/userInGroup.model';
-import { User } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +37,6 @@ if(password)
   getGroupDetails(groupId:number): Observable<GroupDetails> {
     debugger
     return this._http.get<GroupDetails>("/api/Portal/"+groupId+"/Group");
-}
-getUserInGroupsByGroupId(groupId:number): Observable<User[]>{
-  return this._http.get<User[]>("/api/User/"+groupId+"/Group");
 }
 
 
