@@ -48,7 +48,7 @@ export class PersonalAreaComponent implements OnInit {
     })
   }
   async getUserProgress(userId:number){
-    this._userService.getUserProgress(userId).subscribe(p=>this.progress)
+    this._userService.getUserProgress(userId).subscribe(p=>this.progress=p)
  
    }
 }
