@@ -13,8 +13,9 @@ import { UserService } from '../modules/user/user.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  addGroupAble: boolean =
-    (this._userService.user != null && this._groupService.getGroupByUserId(this._userService.user.id) != null)
+  currectUser:User|null
+  addGroupAble: boolean =false
+   
   constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
@@ -22,7 +23,7 @@ export class HomePageComponent implements OnInit {
   userName!: string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
   ngOnInit(): void {
-
+this._userService.geCurrenttUser().subscribe(user=>this.currectUser=user)
     this._groupService.GetWeeklyWinnerGroup().subscribe(data => {
       this.weeklyWinnerGroups = data
       this.weeklyWinnerGroups.key.forEach(userId => {
@@ -31,9 +32,12 @@ export class HomePageComponent implements OnInit {
 
       })
     })
+this.addGroupAble=
+(this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
+
   }
   getUserById(id: number) {
-    this._userService.getUserById(id).subscribe(u => u.firstName)
+    this._userService.getUserById(id).subscribe(user => user.firstName)
   }
   showLogin(b: boolean) {
 
@@ -48,6 +52,10 @@ export class HomePageComponent implements OnInit {
   showAddGroup(b: boolean) {
 
     this.displayAddGroup = b;
+  }
+
+  onLoginClicked(status: boolean) {
+    this.showLogin(status)
   }
 
 }

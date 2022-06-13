@@ -27,7 +27,7 @@
         <p-dialog [(visible)]="displayLogin" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
             [closable]="true">
             <div style="background-color:rgb(255, 255, 255)">
-                <app-login (onLogin)="[groupList.ngOnInit(),showLogin($event)]"></app-login>
+                <app-login (onLogin)="onLoginClicked($event)"></app-login>
             </div>
         </p-dialog>
         <p-dialog [(visible)]="displaySignUp" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"

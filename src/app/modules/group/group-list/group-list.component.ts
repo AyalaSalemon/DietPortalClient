@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Gender } from 'src/app/models/gender.enum';
 import { Group } from 'src/app/models/group.model';
 import { Status } from 'src/app/models/status.enum';
+import { User } from 'src/app/models/user.model';
 import { userInGroup } from 'src/app/models/userInGroup.model';
 import { UserService } from '../../user/user.service';
 import { GroupService } from '../group.service';
@@ -18,11 +19,12 @@ import { GroupService } from '../group.service';
 export class GroupListComponent implements OnInit {
 
 
-  group?:Group
+  group?: Group
   public s = Status
   public g = Gender
   groups: Group[] = []
   insertPassword: boolean = false
+  currentUser: User | null;
 
   constructor(private _groupService: GroupService, private _userService: UserService, private router: Router) {
   }
@@ -30,13 +32,24 @@ export class GroupListComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this._userService.geCurrenttUser().subscribe(user => {
+      this.currentUser = user;
+      this.loadGroups(user);
+    })
+
+    this.loadGroups(null);
+
+  }
+
+  loadGroups(user: User | null) {
     this._groupService.getAllGroups().subscribe(g => {
       this.groups = g
-      if (this._userService.user) {
-        this._groupService.getGroupByUserId(this._userService.user.id).subscribe(
+      if (user) {
+        this._groupService.getGroupByUserId(user.id).subscribe(
           group => {
-            sessionStorage.setItem('group',JSON.stringify(group));
-            this.group= group
+            sessionStorage.setItem('group', JSON.stringify(group));
+            this.group = group
             console.log(this.group.id)
             this.groups.sort(
               (a: Group, b: Group): number => {
@@ -63,8 +76,6 @@ export class GroupListComponent implements OnInit {
 
       }
     })
-
-
   }
 
   degree(g: Group): number {
@@ -76,13 +87,13 @@ export class GroupListComponent implements OnInit {
         count = -5
     }
     else {
-      if (this._userService.user) {
-        var d = new Date(this._userService.user.dateOfBirth)
+      if (this.currentUser) {
+        var d = new Date(this.currentUser?.dateOfBirth)
         if (g.minAge <= ((new Date()).getFullYear() - d.getFullYear()))
           count++
         if (g.maxAge >= ((new Date()).getFullYear() - d.getFullYear()))
           count++
-        if (g.genderId == this._userService.user.gender)
+        if (g.genderId == this.currentUser?.gender)
           count++
       }
     }
@@ -96,25 +107,25 @@ export class GroupListComponent implements OnInit {
     this._groupService.getAllGroups().subscribe(g => this.groups = g)
   }
   joinOpenGroup(groupId: number) {
-    if (!this._userService.user)
+    if (!this.currentUser)
       alert("You have to sign up")
     debugger
-    if (this._userService.user) {
-      var u: userInGroup = new userInGroup(groupId,this._userService.user.id )
+    if (this.currentUser) {
+      var u: userInGroup = new userInGroup(groupId, this.currentUser?.id)
       this._groupService.addUserInGroup(u);
 
     }
   }
   joinCloseGroup(groupId: number, top: number, left: number, password?: string) {
-    if (!this._userService.user) {
+    if (!this.currentUser) {
       alert("You have to sign up")
       return;
     }
 
     this.insertPassword = true
     debugger
-    if (this._userService.user) {
-      var u: userInGroup = new userInGroup(groupId,this._userService.user.id )
+    if (this.currentUser) {
+      var u: userInGroup = new userInGroup(groupId, this.currentUser?.id)
       this._groupService.addUserInGroup(u, password);
 
     }
@@ -124,7 +135,7 @@ export class GroupListComponent implements OnInit {
   }
   enterGroup() {
 
-    this.router.navigate(['group-portal',this.group?.id], { skipLocationChange: true });
+    this.router.navigate(['group-portal', this.group?.id], { skipLocationChange: true });
   }
 
 }

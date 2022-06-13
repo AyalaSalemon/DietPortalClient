@@ -17,6 +17,7 @@ import { AddUserComponent } from './modules/user/add-user/add-user.component';
 import { GroupListComponent } from './modules/group/group-list/group-list.component';
 import { Chart } from 'chart.js';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { Chart } from 'chart.js';
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

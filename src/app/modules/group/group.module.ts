@@ -4,22 +4,23 @@ import { GroupListComponent } from './group-list/group-list.component';
 import { GroupPortalComponent } from './group-portal/group-portal.component';
 import { AddGroupComponent } from './add-group/add-group.component';
 import { GroupService } from './group.service';
-import {MatCardModule} from '@angular/material/card';
-import {SplitterModule} from 'primeng/splitter';
+import { MatCardModule } from '@angular/material/card';
+import { SplitterModule } from 'primeng/splitter';
 import { UserService } from '../user/user.service';
 import { DialogModule } from 'primeng/dialog';
 import { RouterModule, Routes } from '@angular/router';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatListModule} from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import{MatIconModule} from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 const routes: Routes = [
-  { path: "group-portal", component:GroupPortalComponent},
- 
-  { path: "group-list", component:GroupListComponent,outlet:"homePageRouter"}//,outlet:"homePageRouter"},
+  { path: "group-portal", component: GroupPortalComponent },
+
+  { path: "group-list", component: GroupListComponent, outlet: "homePageRouter" }//,outlet:"homePageRouter"},
 ];
 
 @NgModule({
@@ -39,13 +40,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatCheckboxModule,
     MatIconModule
-   
-   
+
+
   ],
-  providers:[GroupService,UserService],
-  exports:[GroupListComponent,GroupPortalComponent,AddGroupComponent]
-    
-  
+  providers: [GroupService, UserService],
+  exports: [GroupListComponent, GroupPortalComponent, AddGroupComponent]
+
+
 })
 
 export class GroupModule { }
