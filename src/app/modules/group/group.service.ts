@@ -20,6 +20,10 @@ export class GroupService {
         return this._http.get<Group[]>("/api/Group");
   }
 
+  getGroupById(groupId: number): Observable<Group> {
+
+    return this._http.get<Group>("/api/Group/" + groupId);
+  }
   getGroupByUserId(userId: number): Observable<Group> {
 
     return this._http.get<Group>("/api/Group/" + userId + "/User");
@@ -28,6 +32,7 @@ export class GroupService {
 
     return this._http.get<KeyValue<number[], number|null>>("/api/Weight/WeeklyWinnerGroup");
   }
+ 
   addUserInGroup(u:userInGroup, password?:string):Observable<any> {
 debugger
 if(password)

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Group } from 'src/app/models/group.model';
 import { SentedMessege } from 'src/app/models/sentedMessege.model';
 import { UserWithKg } from 'src/app/models/userWithKg.model';
-import { WeeklyGroupWinner } from 'src/app/models/weekliGroupWinner.model';
+import { WeeklyGroupWinner } from 'src/app/models/weeklyGroupWinner.model';
 import { GroupService } from '../group.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
@@ -26,6 +26,7 @@ export class GroupPortalComponent implements OnInit {
 
   sentedMessege: SentedMessege[] = [];
   WeeklyGroupWinner?: WeeklyGroupWinner;
+  winnersNames!:string[]
   @Input()
   groupId!: number
   fullUsers!:User[]
@@ -56,7 +57,9 @@ export class GroupPortalComponent implements OnInit {
       ,
       rej => { }
     );
-   
+  
+  
+  
   }
   setUsers(){
     this.fullUsers.forEach(user=>{

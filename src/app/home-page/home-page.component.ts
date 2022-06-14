@@ -13,32 +13,64 @@ import { UserService } from '../modules/user/user.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  currectUser:User|null
-  addGroupAble: boolean =false
-   
+  currectUser: User | null
+  addGroupAble: boolean = false
+
   constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
   displayAddGroup: boolean = false
-  userName!: string[]
+ 
+  winners!: KeyValue<number[], number | null>
+  winnersNames!:string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
+  winnerGroupsNames !: string[]
   ngOnInit(): void {
-this._userService.geCurrenttUser().subscribe(user=>this.currectUser=user)
+    this.loadWinners()
+    this._userService.geCurrenttUser().subscribe(user => this.currectUser = user)
+    
+    this.addGroupAble =
+      (this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
+
+  }
+  loadWinners(){
+    this.winnerGroupsNames = []
     this._groupService.GetWeeklyWinnerGroup().subscribe(data => {
+
       this.weeklyWinnerGroups = data
-      this.weeklyWinnerGroups.key.forEach(userId => {
-        this._userService.getUserById(userId)
-          .subscribe(u => this.userName.push(u.firstName))
+      this.weeklyWinnerGroups.key.forEach(groupId => {
+        this._groupService.getGroupById(groupId)
+          .subscribe(grp => {
 
-      })
+            this.winnerGroupsNames.push(grp.groupName)
+       
+          }, rej => {
+
+          })
+        })
     })
-this.addGroupAble=
-(this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
-
+  this.winnersNames=[]
+    this._userService.getWeeklyWinner().subscribe(
+     res=>{
+     this.winners=res
+     console.log(this.winners.key)
+     debugger
+      this.winners.key.forEach(winner=>
+        this._userService.getUserById(winner).subscribe(
+          user=>{
+            debugger
+            this.winnersNames.push(user.firstName)
+             console.log("user.firstName"+user.firstName)
+            } )
+           
+        )
+     },
+     rej=>{} 
+    )
   }
-  getUserById(id: number) {
-    this._userService.getUserById(id).subscribe(user => user.firstName)
-  }
+  // getUserById(id: number) {
+  //   this._userService.getUserById(id).subscribe(user => user.firstName)
+  // }
   showLogin(b: boolean) {
 
     this.displayLogin = b;

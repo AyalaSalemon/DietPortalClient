@@ -6,5 +6,5 @@ export class WeeklyGroupWinner{
     
     }
     key: number []
-     val:number
+    val:number
 }

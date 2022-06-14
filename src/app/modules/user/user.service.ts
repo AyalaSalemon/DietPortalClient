@@ -5,12 +5,13 @@ import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import { Weight } from 'src/app/models/weight.model';
 import { ImageSnippet } from 'src/app/models/image-snippet.model';
+import { KeyValue } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  // user?: User;
+ 
   b: boolean = true
   private currentUser$ = new BehaviorSubject<User | null>(null);
 
@@ -26,26 +27,14 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    return this._http.get<User>("/api/Group/" + id + "/User")
+    return this._http.get<User>("/api/User/" + id )
   }
 
   login(name: string, password: string):Observable<User> {
    return this._http.get<User>("/api/User/" + name + "/" + password);
-    // return this.b
+   
   }
-  // async getUser(name: string, password: string): Promise<boolean> {
-  //   await this._http.get<User>("/api/User/" + name + "/" + password).subscribe(res => {
-  //     sessionStorage.setItem('user', JSON.stringify(res))
-  //     this.user = res
-  //     alert("Hi to " + this.user?.firstName + "!!!!")
-  //     this.b = false;
-  //     this.currentUser$
-  //   }
-  //     ,
-  //     rej => { this.b = true }
-  //   );
-  //   return this.b
-  // }
+ 
   postImage(_imageSrc: ImageSnippet,eId?:number)
   {
     const formData = new FormData();
@@ -65,6 +54,10 @@ export class UserService {
 
   addWeight(w: Weight): Observable<number> {
     return this._http.post<number>("/api/Weight", w);
+  }
+  
+getWeeklyWinner():Observable< KeyValue<number[], number | null>>{
+  return this._http.get< KeyValue<number[], number | null>>("/api/Weight/WeeklyWinner" )
   }
 }
 

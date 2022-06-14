@@ -1,6 +1,6 @@
 import { SentedMessege } from "./sentedMessege.model";
 import { UserWithKg } from "./userWithKg.model";
-import { WeeklyGroupWinner } from "./weekliGroupWinner.model";
+import { WeeklyGroupWinner } from "./weeklyGroupWinner.model";
 
 export class GroupDetails{
 
