@@ -50,23 +50,19 @@ export class GroupListComponent implements OnInit {
           group => {
             sessionStorage.setItem('group', JSON.stringify(group));
             this.group = group
-            console.log(this.group.id)
             this.groups.sort(
               (a: Group, b: Group): number => {
                 var ca = 0
                 var cb = 0
                 if (this.group?.id == a.id) {
-                  console.log("-1 a:", a.id, " b:", b.id)
                   return -1
                 }
                 if (this.group?.id == b.id) {
-                  console.log("1a:", a.id, " b:", b.id)
                   return 1
                 }
 
                 ca += this.degree(a)
                 cb += this.degree(b)
-                console.log(ca - cb, "a:", a.id, " b:", b.id)
                 return cb - ca
 
               }

@@ -1,16 +1,19 @@
 import { SentedMessege } from "./sentedMessege.model";
 import { UserWithKg } from "./userWithKg.model";
 import { WeeklyGroupWinner } from "./weeklyGroupWinner.model";
+import { KeyValue } from '@angular/common';
 
-export class GroupDetails{
+export class GroupDetails {
 
-    constructor( name: string, kg:number) {
-    this. userswithkg=[]
-    this.sentedMessege=[]
-    
+    constructor(name: string, kg: number) {
+        this.userswithkg = []
+        this.sentedMessege = []
+
     }
-    userswithkg: UserWithKg [];
-    sentedMessege:SentedMessege []
-    WeeklyGroupWinner1?: {[key: number]: number []}
-    WeeklyGroupWinner?:WeeklyGroupWinner
+    userswithkg: UserWithKg[];
+    sentedMessege: SentedMessege[]
+    // WeeklyGroupWinner1?: KeyValue<number[], number | null>;
+    // WeeklyGroupWinner1?: {[key: number]: number []}
+    weeklyGroupWinner?: KeyValue<number[], number | null>
+    // WeeklyGroupWinner?:WeeklyGroupWinner
 }

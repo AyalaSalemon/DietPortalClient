@@ -8,6 +8,7 @@ import { WeeklyGroupWinner } from 'src/app/models/weeklyGroupWinner.model';
 import { GroupService } from '../group.service';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-group-portal',
@@ -25,7 +26,8 @@ export class GroupPortalComponent implements OnInit {
 
 
   sentedMessege: SentedMessege[] = [];
-  WeeklyGroupWinner?: WeeklyGroupWinner;
+  // WeeklyGroupWinner?: WeeklyGroupWinner;
+  WeeklyGroupWinners?:KeyValue<number[], number | null>;
   winnersNames!:string[]
   @Input()
   groupId!: number
@@ -46,20 +48,36 @@ export class GroupPortalComponent implements OnInit {
     this._groupService.getUserInGroupsByGroupId(groupId).subscribe(res=>{
       this.fullUsers=res
     
-    },rej=>{})
+    },
+    rej=>{})
 
     this._groupService.getGroupDetails(groupId).subscribe(res => {
       this.users = res.userswithkg;
-      this.WeeklyGroupWinner = res.WeeklyGroupWinner
+      debugger
+
+      this.WeeklyGroupWinners = res.weeklyGroupWinner
+      console.log("res.weeklyGroupWinner "+res.weeklyGroupWinner)
+   
       this.sentedMessege = res.sentedMessege 
       this.setUsers()
+      this.winnersNames=[]
+      
+      this.WeeklyGroupWinners?.key.forEach(
+        userId=>{
+console.log("userId:"+userId)
+           let winner=this.fullUsers.find(user=>user.id==userId)?.firstName
+           console.log("winner:"+winner)
+           if(winner)
+         this.winnersNames.push(winner)
+         }
+      )
     }
       ,
-      rej => { }
+      rej => {
+        debugger
+       }
     );
-  
-  
-  
+
   }
   setUsers(){
     this.fullUsers.forEach(user=>{

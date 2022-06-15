@@ -20,20 +20,20 @@ export class HomePageComponent implements OnInit {
   displayLogin: boolean = false
   displaySignUp: boolean = false
   displayAddGroup: boolean = false
- 
+
   winners!: KeyValue<number[], number | null>
-  winnersNames!:string[]
+  winnersNames!: string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
   winnerGroupsNames !: string[]
   ngOnInit(): void {
     this.loadWinners()
     this._userService.geCurrenttUser().subscribe(user => this.currectUser = user)
-    
+
     this.addGroupAble =
       (this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
 
   }
-  loadWinners(){
+  loadWinners() {
     this.winnerGroupsNames = []
     this._groupService.GetWeeklyWinnerGroup().subscribe(data => {
 
@@ -43,29 +43,25 @@ export class HomePageComponent implements OnInit {
           .subscribe(grp => {
 
             this.winnerGroupsNames.push(grp.groupName)
-       
+
           }, rej => {
 
           })
-        })
+      })
     })
-  this.winnersNames=[]
+    this.winnersNames = []
     this._userService.getWeeklyWinner().subscribe(
-     res=>{
-     this.winners=res
-     console.log(this.winners.key)
-     debugger
-      this.winners.key.forEach(winner=>
-        this._userService.getUserById(winner).subscribe(
-          user=>{
-            debugger
-            this.winnersNames.push(user.firstName)
-             console.log("user.firstName"+user.firstName)
-            } )
-           
+      res => {
+        this.winners = res
+        this.winners.key.forEach(winner =>
+          this._userService.getUserById(winner).subscribe(
+            user => {
+              this.winnersNames.push(user.firstName)
+            })
+
         )
-     },
-     rej=>{} 
+      },
+      rej => { }
     )
   }
   // getUserById(id: number) {
