@@ -1,8 +1,4 @@
-<!-- <div *ngIf="userName">
-    <div *ngFor="let win of userName">
-        {{win}}
-    </div>
-</div> -->
+
 <div class=home-white>
 
     <div class="col-md-6">
@@ -12,16 +8,28 @@
                 class="fa fa-circle-o-notch fa-spin"></i> add User</button>
 
         <button style="margin:10px" class="btn btn-info btn-md" (click)="showAddGroup(true)"
-            [disabled]="addGroupAble"><i class="fa fa-circle-o-notch fa-spin"></i> add Group</button>
-        winner:
-        <div *ngFor="let win of winnersNames">
-            {{win}}
-        </div>
-        winner groups:
-        <div *ngFor="let win of winnerGroupsNames">
-            {{win}}
-        </div>
-
+        
+        [disabled]="addGroupAble"><i class="fa fa-circle-o-notch fa-spin"></i> add Group</button>
+      
+            <button class="btn btn-info btn-md" (click)="enterPersonalArea()" [disabled]="addGroupAble"><i class="fa fa-circle-o-notch fa-spin"></i>
+                To my area</button>
+      
+       
+        <p-fieldset legend="winners:">
+   
+            <p *ngFor="let win of winnersNames">
+                {{win}}
+             </p>
+        </p-fieldset>
+      
+        <p-fieldset legend="winner groups:">
+   
+            <p *ngFor="let win of winnerGroupsNames">
+                {{win}}
+             </p>
+        </p-fieldset>
+      
+       
     </div>
     <app-group-list #groupList></app-group-list>
     <div>

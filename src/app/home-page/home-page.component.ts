@@ -13,10 +13,12 @@ import { UserService } from '../modules/user/user.service';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  
+
+  constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) 
+  { }
   currectUser: User | null
   addGroupAble: boolean = false
-
-  constructor(private router: Router, private _groupService: GroupService, private _userService: UserService) { }
   displayLogin: boolean = false
   displaySignUp: boolean = false
   displayAddGroup: boolean = false
@@ -25,10 +27,11 @@ export class HomePageComponent implements OnInit {
   winnersNames!: string[]
   weeklyWinnerGroups!: KeyValue<number[], number | null>;
   winnerGroupsNames !: string[]
+  
   ngOnInit(): void {
     this.loadWinners()
     this._userService.geCurrenttUser().subscribe(user => this.currectUser = user)
-
+debugger
     this.addGroupAble =
       (this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
 
@@ -84,6 +87,9 @@ export class HomePageComponent implements OnInit {
 
   onLoginClicked(status: boolean) {
     this.showLogin(status)
+  }
+  enterPersonalArea() {
+    this.router.navigate(['personal-area'], { skipLocationChange: true });
   }
 
 }

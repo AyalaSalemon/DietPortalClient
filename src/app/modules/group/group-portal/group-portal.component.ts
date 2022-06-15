@@ -22,7 +22,7 @@ export class GroupPortalComponent implements OnInit {
     this.group = JSON.parse(groupString ? groupString : JSON.stringify(new Group(1, "3", true, new Date(), 3, 1, "3124")))
   }
   u1: UserWithKg = { id: 0, name: "ra", kg: 50 }
-  users: UserWithKg[] = [{ id: 0, name: 'ra', kg: 50 }, { id: 1, name: "ayala", kg: 50 }, { id: 3, name: "ayala7racheli", kg: 100 }];
+  users: UserWithKg[] =[]// [{ id: 0, name: 'ra', kg: 50 }, { id: 1, name: "ayala", kg: 50 }, { id: 3, name: "ayala7racheli", kg: 100 }];
 
 
   sentedMessege: SentedMessege[] = [];
@@ -53,7 +53,7 @@ export class GroupPortalComponent implements OnInit {
 
     this._groupService.getGroupDetails(groupId).subscribe(res => {
       this.users = res.userswithkg;
-      debugger
+      
 
       this.WeeklyGroupWinners = res.weeklyGroupWinner
       console.log("res.weeklyGroupWinner "+res.weeklyGroupWinner)
@@ -74,7 +74,7 @@ console.log("userId:"+userId)
     }
       ,
       rej => {
-        debugger
+       
        }
     );
 
@@ -89,7 +89,6 @@ console.log("userId:"+userId)
       )
   }
   enterPersonalArea() {
-
     this.router.navigate(['personal-area'], { skipLocationChange: true });
   }
 

@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import {FieldsetModule} from 'primeng/fieldset';
 
 
 
@@ -39,7 +40,8 @@ const routes: Routes = [
     MatListModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    FieldsetModule
 
 
   ],

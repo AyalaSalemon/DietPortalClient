@@ -34,15 +34,14 @@ export class GroupService {
   }
  
   addUserInGroup(u:userInGroup, password?:string):Observable<any> {
-debugger
+
 if(password)
     return this._http.post<any>("/api/User/"+password, u);
     else
     return this._http.post("/api/User", u);
   }
   getGroupDetails(groupId:number): Observable<GroupDetails> {
-    debugger
-    return this._http.get<GroupDetails>("/api/Portal/"+groupId+"/Group");
+        return this._http.get<GroupDetails>("/api/Portal/"+groupId+"/Group");
 }
 getUserInGroupsByGroupId(groupId:number): Observable<User[]>{
   return this._http.get<User[]>("/api/User/"+groupId+"/Group");

@@ -7,14 +7,20 @@
             To my area</button>
     </div>
     <div> 
+         <!-- <p-fieldset legend="winners:">
+   
+            <p *ngFor="let win of winnersNames">
+                {{win}}
+             </p>
+        </p-fieldset> -->
         winners: 
         <div  *ngFor="let winner of winnersNames">
-           * {{winner}}
+            {{winner}}
         </div>
     </div>
     <p-splitter [style]="{'height': '300px'}">
         <ng-template pTemplate >
-            Panel 1 
+        
             <div>
                 <mat-list>
                     
@@ -32,8 +38,7 @@
     <!-- <mat-icon style="border-radius: 200px;">account_circle</mat-icon> -->
         </ng-template>
         <ng-template pTemplate >
-            Panel 2
-           
+          
         </ng-template>
     </p-splitter>
     

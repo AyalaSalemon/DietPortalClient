@@ -16,7 +16,7 @@ import { LoginComponent } from './modules/user/login/login.component';
 import { AddUserComponent } from './modules/user/add-user/add-user.component';
 import { GroupListComponent } from './modules/group/group-list/group-list.component';
 import { Chart } from 'chart.js';
-
+import {FieldsetModule} from 'primeng/fieldset';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { Chart } from 'chart.js';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    GroupModule
+    GroupModule,
+    FieldsetModule
 
   ],
   providers: [],

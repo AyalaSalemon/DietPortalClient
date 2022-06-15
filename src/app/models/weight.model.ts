@@ -1,11 +1,11 @@
 export class Weight {
 
-    constructor(userId: number, groupId: number, Date: Date,
+    constructor(userId: number, groupId: number, date: Date,
         currentWeight: number, kg: number) {
         this.id = 0;
         this.userId = userId;
         this.groupId = groupId;
-        this.Date = Date;
+        this.date = date;
         this.currentWeight = currentWeight;
         this.kg = kg
 
@@ -14,7 +14,7 @@ export class Weight {
     id: number
     userId: number
     groupId: number
-    Date: Date
+    date: Date
     currentWeight: number
     kg: number
 }
