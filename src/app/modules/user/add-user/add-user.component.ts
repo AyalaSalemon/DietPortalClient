@@ -51,7 +51,7 @@ export class AddUserComponent implements OnInit {
       res=>{
         
        this.user.id=res      
-        this._userService.setCurrentUser(this.user); 
+      this._userService.setCurrentUser(this.user); 
 
         if (this._selectedFile) {
           this._userService.postImage(this._selectedFile, this.user?.id).subscribe(succ => { console.log("save image succ") })

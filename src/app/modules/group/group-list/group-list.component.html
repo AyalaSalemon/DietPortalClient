@@ -1,27 +1,17 @@
-grouplist works
-
-
-<div *ngIf="this.group">
-
+<div *ngIf="this.group&&this.group.id!=0">
   <div style="display:inline-flex;flex-wrap: wrap">
     <p-splitter [style]="{'height': '200px'}" *ngFor="let grp of groups">
-
       <ng-template pTemplate>
         <mat-card class="group-card">
           <mat-card-title-group>
             <mat-card-title>{{grp.groupName}}</mat-card-title>
             <mat-card-subtitle>{{s[grp.status]}}</mat-card-subtitle>
-
           </mat-card-title-group>
           <mat-card-content>
-
             <div *ngIf="grp.id==this.group.id" #splitter>
-    
-    
               <button (click)="enterGroup()" style="position: absolute;bottom: 10px; right:100px; width:100px;"
                 class="btn btn-info btn-md"><i class="fa fa-circle-o-notch fa-spin"></i> enter</button>
             </div>
-
             <div *ngIf="grp.isOpen">
               <div *ngIf="grp.genderId||grp.minAge||grp.maxAge">
                 properties:
@@ -39,26 +29,13 @@ grouplist works
                 style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
                   class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-
-
-
-
-
           </mat-card-content>
-
         </mat-card>
-
       </ng-template>
-
     </p-splitter>
   </div>
 </div>
-
-
-
-
-
-<div *ngIf="!this.group">
+<div *ngIf="!this.group||this.group&&this.group.id==0">
   <p-dialog [(visible)]="insertPassword" [modal]="true" [responsive]="true" [minY]="70" [baseZIndex]="10000"
     [closable]="true">
     <div style=" height: 300px;width: 400px;">
@@ -72,22 +49,18 @@ grouplist works
           </div>
           <button class="insert">insert <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px"></i></button>
         </article>
-
       </div>
     </div>
   </p-dialog>
   <div style="display:inline-flex;flex-wrap: wrap">
     <p-splitter [style]="{'height': '200px'}" *ngFor="let grp of groups">
-
       <ng-template pTemplate>
         <mat-card class="group-card">
           <mat-card-title-group>
             <mat-card-title>{{grp.groupName}}</mat-card-title>
             <mat-card-subtitle>{{s[grp.status]}}</mat-card-subtitle>
-
           </mat-card-title-group>
           <mat-card-content>
-
             <div *ngIf="grp.isOpen">
               <div *ngIf="grp.genderId||grp.minAge||grp.maxAge">
                 properties:
@@ -106,17 +79,9 @@ grouplist works
                 style="position: absolute;bottom: 10px; right:100px; width:100px;" class="btn btn-info btn-md"><i
                   class="fa fa-circle-o-notch fa-spin"></i> join</button>
             </div>
-
-
-
-
-
           </mat-card-content>
-
         </mat-card>
-
       </ng-template>
-
     </p-splitter>
   </div>
 </div>

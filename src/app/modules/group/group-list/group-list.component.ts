@@ -122,7 +122,16 @@ export class GroupListComponent implements OnInit {
     debugger
     if (this.currentUser) {
       var u: userInGroup = new userInGroup(groupId, this.currentUser?.id)
-      this._groupService.addUserInGroup(u, password);
+      this._groupService.addUserInGroup(u, password).subscribe(
+        res=>
+       this._groupService.getGroupById(groupId).subscribe(
+         fullGroup=>{
+            this.group=fullGroup;
+            sessionStorage.setItem("group",JSON.stringify(fullGroup));
+         }
+        
+       )
+        );
 
     }
 

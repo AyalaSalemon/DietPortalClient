@@ -31,7 +31,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.loadWinners()
     this._userService.geCurrenttUser().subscribe(user => this.currectUser = user)
-debugger
+
     this.addGroupAble =
       (this.currectUser != null && this._groupService.getGroupByUserId(this.currectUser?.id) != null)
 

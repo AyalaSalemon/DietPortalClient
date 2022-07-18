@@ -53,18 +53,19 @@ export class PersonalAreaComponent implements OnInit {
     var stringGroup = sessionStorage.getItem("group")
     this.group = JSON.parse(stringGroup ? stringGroup : JSON.stringify(new Group(0, "g", true, new Date(22, 4, 22), 3, 1))) as Group
     var firstWeek = new Date(this.group.startDate).getTime()
-    await this.getUserProgress(user?.id || 0).subscribe(p => {
-      this.progress = p
+    this.getUserProgress(user?.id || 0).subscribe(p => {
+      this.progress = p;
+    
       this.progress.forEach(w => {
-        debugger
+        debugger;
         var point: ShowProgress = {
-          weekNumber: Math.floor((new Date(w.date).getTime() - firstWeek) / (60 * 60 * 24 * 1000) / 7),
+          weekNumber:Math.floor((firstWeek - new Date(w.date).getTime()) / (7 * 24 * 60 * 60 * 1000)),
           date: w.date,
           weight: w.currentWeight,
           kg: w.kg
-        }
-        this.dataSource.push(point)
-      })
+        };
+        this.dataSource.push(point);
+      });
       this.table.renderRows();
     },
       rej => {
