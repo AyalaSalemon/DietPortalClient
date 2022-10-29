@@ -1,0 +1,84 @@
+
+<div style="margin-top: 50; margin-left:50">
+    <h2> {{this.group.groupName}}</h2>
+</div>
+
+
+<div class= "div-backGround" size="700px">
+    <div class="col-md-6">
+        <button class="btn btn-info btn-md" (click)="enterPersonalArea()"><i class="fa fa-circle-o-notch fa-spin"></i>
+            To my area</button>
+    </div>
+    <div> 
+         <!-- <p-fieldset legend="winners:">
+   
+            <p *ngFor="let win of winnersNames">
+                {{win}}
+             </p>
+        </p-fieldset> -->
+        winners: 
+        <div  *ngFor="let winner of winnersNames">
+            {{winner}}
+        </div>
+    </div>
+    <p-splitter [style]="{'height': '300px'}">
+        <ng-template pTemplate >
+        
+            <div>
+                <mat-list>
+                    
+                    <mat-list-item *ngFor="let user of users; last as last">
+                       
+                     <div> </div>
+                       <h2 mat-line> {{user.name}}  </h2> 
+                       <h2 style="margin-left: 300px;">{{user.kg}} </h2>
+                     
+                       <mat-divider style="background-color:aqua ;border-width: 3px;" [inset]="true" *ngIf="!last"></mat-divider>
+                    </mat-list-item>
+                   
+                 </mat-list> 
+                </div>
+    <!-- <mat-icon style="border-radius: 200px;">account_circle</mat-icon> -->
+        </ng-template>
+        <ng-template pTemplate >
+          
+            <div class="message-div">
+                <form [formGroup]="message" class="message-form">
+                 
+                  <div style="margin-bottom: 30px; height:300px;width:300px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+                  <mat-list>
+                   
+                    <mat-list-item *ngFor="let message of sentedMessege">
+                      <p matLine>
+                        <!-- <span> {{fullUsers.find(u=>u.userId==message.userId).name }}</span> -->
+                        <span> {{message.userId}}</span>
+                        <span class="demo-2"> -- {{message.content}} </span>
+                      </p>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+
+                  <mat-form-field class="login-form-full-width" appearance="fill">
+                    <mat-label >add massege</mat-label>
+                    <input matInput formControlName="userMessage">
+                  </mat-form-field>
+                  
+                 <br>
+                  <button class="btn btn-info btn-md" (click)=" addMessage()"  [disabled]="message.invalid"><i class="fa fa-circle-o-notch fa-spin"></i>
+                    sent</button>
+            
+
+                </form>
+                <br>
+
+                <button class="btn btn-info btn-md" (click)=" getGroupDetails(this.group.id)"><i class="fa fa-circle-o-notch fa-spin"></i>
+                  refresh</button>
+               
+                </div>
+        </ng-template>
+    </p-splitter>
+    
+    
+ 
+</div>

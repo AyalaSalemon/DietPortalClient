@@ -1,0 +1,9 @@
+.backGround {
+ background-image: url(../assets/back-ground.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+     min-height: 100%;
+     width: 100%;
+     background-size: cover;
+   
+}
