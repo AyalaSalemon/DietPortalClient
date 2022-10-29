@@ -55,11 +55,10 @@ export class PersonalAreaComponent implements OnInit {
     var firstWeek = new Date(this.group.startDate).getTime()
     this.getUserProgress(user?.id || 0).subscribe(p => {
       this.progress = p;
-    
+
       this.progress.forEach(w => {
-        debugger;
         var point: ShowProgress = {
-          weekNumber:Math.floor((firstWeek - new Date(w.date).getTime()) / (7 * 24 * 60 * 60 * 1000)),
+          weekNumber: Math.floor((firstWeek - new Date(w.date).getTime()) / (7 * 24 * 60 * 60 * 1000)),
           date: w.date,
           weight: w.currentWeight,
           kg: w.kg
@@ -82,9 +81,9 @@ export class PersonalAreaComponent implements OnInit {
   addWeight() {
     const userString = sessionStorage.getItem('user')
     const user = JSON.parse(userString ? userString : JSON.stringify(new User(1, "9", "l", "v", new Date(), 1, 76, "0000")))
-
+    var lastWeight = this.progress[this.progress.length - 1].currentWeight
     if (this.group && this.newWeightForm) {
-      const weight: Weight = new Weight(user.id, this.group?.id, new Date(), this.newWeightForm?.value['weight'], 5)
+      const weight: Weight = new Weight(user.id, this.group?.id, new Date(), this.newWeightForm?.value['weight'], lastWeight - this.newWeightForm?.value['weight'])
       this._userService.addWeight(weight).subscribe();
     }
 
